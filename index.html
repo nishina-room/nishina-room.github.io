@@ -243,7 +243,7 @@ body.enter .hint.back{animation:hin .6s .3s forwards}
 </style>
 </head>
 <body>
-<div id="gate"><img src="a/logow.webp" alt=""><small>PRIVATE PREVIEW</small><form id="gf"><input id="gp" type="password" autocomplete="off" placeholder="PASSWORD" aria-label="password"><button type="submit">OPEN</button><p id="gm"></p></form></div>
+<div id="gate"><img src="a/logow.webp" alt=""><small>PRIVATE PREVIEW</small><form id="gf"><input id="gp" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="----" aria-label="password"><button type="submit">OPEN</button><p id="gm"></p></form></div>
 <div class="open" id="open"><div class="pt" id="pt"></div><div class="ci a"><img src="a/dark.webp" alt=""></div><div class="ci b"><img src="a/wink.webp" alt=""></div><div class="ci c"><img src="a/hero_l.webp" alt=""></div><div class="fl" style="animation-delay:1.7s"></div><div class="fl" style="animation-delay:2.25s"></div><div class="fl" style="animation-delay:2.8s"></div><div class="box"><img class="sg" src="a/logow.webp" alt=""><img class="lg" src="a/logo.webp" alt="Nishine"><div class="ln"></div><p>TAP TO START</p></div></div>
 
 <div class="edge" id="edge"></div>
@@ -320,7 +320,7 @@ var im=Array.prototype.slice.call(o.querySelectorAll('img')).map(function(i){ret
 Promise.all(im).then(function(){requestAnimationFrame(function(){requestAnimationFrame(go)})});setTimeout(go,4000)})();
 
 /* preview gate (見た目だけの簡易ロック) */
-(function(){var H='f3163e8f9804f20dd8234653e0ee6b688cc95ba71ab82b24218945f16fd3c6de',g=$('gate'),f=$('gf'),i=$('gp'),m=$('gm');
+(function(){var H='af03a51e581f58ba77807426b6fffed5f72e11d9618c38ac397c0746027f70f8',g=$('gate'),f=$('gf'),i=$('gp'),m=$('gm');
 function pass(){g.classList.add('off');setTimeout(function(){g.style.display='none'},520);try{sessionStorage.setItem('nsok','1')}catch(e){}window.__unlock()}
 function sha(t){var b=new TextEncoder().encode(t);return crypto.subtle.digest('SHA-256',b).then(function(d){return Array.prototype.map.call(new Uint8Array(d),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')})}
 var saved=false;try{saved=sessionStorage.getItem('nsok')==='1'}catch(e){}
