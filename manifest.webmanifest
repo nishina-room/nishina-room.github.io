@@ -1,0 +1,31 @@
+{
+ "name": "Nishine Official Site",
+ "short_name": "Nishine",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#17191b",
+ "theme_color": "#17191b",
+ "lang": "ja",
+ "icons": [
+  {
+   "src": "a/pwa-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "a/pwa-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "a/pwa-maskable.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
