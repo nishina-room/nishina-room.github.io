@@ -42,6 +42,7 @@ h2{display:flex;align-items:baseline;gap:12px;font-weight:300;letter-spacing:.32
 h2 small{font-size:11px;letter-spacing:.2em;color:var(--n)}
 h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--t),transparent)}
 .lead{font-size:12px;opacity:.7;margin:8px 0 22px}
+.xw{padding:8px;min-height:120px;overflow:hidden}.xw a.twitter-timeline{font-size:13px;color:var(--tl)}.xl{color:var(--tl);font-size:13px;letter-spacing:.08em;text-decoration:none}
 .card{background:rgba(255,255,255,.055);border:1px solid rgba(136,171,255,.2);border-radius:12px;padding:18px 20px}
 /* memo (frame) */
 .memo{position:relative;color:#26343a;background:url(a/frame.webp) center/100% 100% no-repeat;padding:min(11%,70px) min(14%,96px) min(9%,56px) min(11%,80px);min-height:260px;font-size:clamp(12px,2.6vw,14px)}
@@ -297,7 +298,7 @@ body.enter .hint.back{animation:hin .6s .3s forwards}
 <p class="src">データ：<a href="https://utalis.github.io">UTAEMO</a>／曲名・ラベルはサンプルです</p></div>
 <details style="margin-top:14px"><summary>歌のリクエストを送る</summary><div class="card" style="margin-top:8px"><input placeholder="リクエスト曲名"><input placeholder="お名前（ニックネーム）"><button class="btn" data-demo>送信</button></div></details></section>
 
-<section id="x"><h2>X POST<small>最新ポスト</small></h2><p class="lead">&nbsp;</p><div class="card" style="font-size:14px">ここに仁科さんのXポストを掲載します（ポストのURLを貼って更新）。</div></section>
+<section id="x"><h2>X POST<small>最新ポスト</small></h2><p class="lead">最新のポストが表示されます</p><div class="card xw" id="xw"><a class="twitter-timeline" data-theme="dark" data-height="520" data-chrome="noheader nofooter transparent noborders" data-dnt="true" href="https://twitter.com/1974_247">@1974_247 のポスト</a></div><p style="text-align:center;margin-top:12px"><a class="xl" href="https://x.com/1974_247" target="_blank" rel="noopener">Xで見る →</a></p></section>
 
 <section id="contact"><h2>CONTACT<small>メッセージ・お問い合わせ</small></h2><p class="lead">匿名で送れます</p>
 <div class="msg"><textarea rows="4" placeholder="仁科さんへのメッセージ"></textarea><button class="btn s" data-demo>送る</button></div>
@@ -367,5 +368,5 @@ var g=$('gal');for(var k=1;k<=8;k++)(function(k){var d=document.createElement('d
 $('lb').onclick=function(){this.classList.remove('on')};
 Array.prototype.forEach.call(document.querySelectorAll('[data-demo]'),function(b){b.onclick=function(){var o=b.textContent;b.textContent='（試作のため送信されません）';setTimeout(function(){b.textContent=o},1800)}});
 </script>
-<script>if('serviceWorker' in navigator)addEventListener('load',function(){try{navigator.serviceWorker.register('sw.js')}catch(e){}})</script></body>
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){try{navigator.serviceWorker.register('sw.js').catch(function(){})}catch(e){}})</script><script>(function(){var el=document.getElementById('xw');if(!el)return;var d=false;function ld(){if(d)return;d=true;var t=document.createElement('script');t.src='https://platform.twitter.com/widgets.js';t.async=true;document.body.appendChild(t)}if('IntersectionObserver' in window){var io=new IntersectionObserver(function(a){if(a[0].isIntersecting){io.disconnect();ld()}},{rootMargin:'400px'});io.observe(el)}else ld()})()</script></body>
 </html>
