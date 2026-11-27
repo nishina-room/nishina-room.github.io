@@ -87,11 +87,6 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--t)
 .omi .res{font-size:18px;letter-spacing:.1em;min-height:62px;margin-top:10px}
 @media(max-width:520px){.omi{grid-template-columns:1fr;text-align:center}.omi .face{margin:auto}}
 /* songs */
-var SG=[['ダイヤモンド','サンプル歌手A','J-POP','十八番'],['ネモフィラ','サンプル歌手B','J-POP','お気に入り'],['うるふ','サンプル歌手C','ボカロ',''],['ぎんいろ','サンプル歌手D','アニソン','練習中'],['あおのまほう','サンプル歌手E','アイドル曲','お気に入り'],['Moonlight Tea','Sample Artist F','洋楽',''],['ひとりごと','サンプル歌手G','その他',''],['はなびら','サンプル歌手H','演歌','']];
-function render(list){var ul=$('sl');ul.innerHTML='';list.forEach(function(x){var li=document.createElement('li');li.innerHTML='<div><b></b><br><small></small></div><button>弾幕</button><div class="tg"><i>'+x[2]+'</i>'+(x[3]?'<i class="l">'+x[3]+'</i>':'')+'</div>';li.querySelector('b').textContent=x[0];li.querySelector('small').textContent=x[1];li.querySelector('button').onclick=function(){var t='♪ '+x[0]+' / '+x[1],b=this;try{navigator.clipboard.writeText(t).then(function(){b.textContent='コピー済'},function(){b.textContent='失敗'})}catch(e){b.textContent='失敗'}setTimeout(function(){b.textContent='弾幕'},1500)};ul.appendChild(li)});$('cnt').textContent=list.length+'曲'}
-function cur(){var q=$('q').value.toLowerCase(),g=$('gn').value,o=+$('so').value;var l=SG.filter(function(x){return(!g||x[2]===g)&&(!q||(x[0]+x[1]).toLowerCase().indexOf(q)>-1)});if(o===1)l.sort(function(a,b){return a[0].localeCompare(b[0],'ja')});if(o===2)l.sort(function(a,b){return b[0].localeCompare(a[0],'ja')});if(o===3)l.sort(function(a,b){return a[1].localeCompare(b[1],'ja')});return l}
-['q','gn','so'].forEach(function(i){$(i).oninput=$(i).onchange=function(){render(cur())}});
-$('rnd').onclick=function(){var l=cur();if(l.length){var x=l[Math.floor(Math.random()*l.length)];$('pick').textContent='今日はこの曲はどう？ → '+x[0]+' / '+x[1]}};render(SG);
 /* gallery */
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
 .gal div{aspect-ratio:9/16;border-radius:10px;cursor:pointer;display:grid;place-items:center;font-size:11px;color:rgba(255,255,255,.55);background:linear-gradient(135deg,#3b474c,#243036);border:1px solid rgba(136,171,255,.25);transition:.2s;position:relative;overflow:hidden}
@@ -188,6 +183,7 @@ footer .cr{opacity:.65;margin-top:6px}
 .open{cursor:default}.open.tapok{cursor:pointer}
 .edge{position:fixed;inset:0;z-index:101;pointer-events:none;display:none;background:linear-gradient(90deg,#fff,var(--n) 40%,var(--tl));filter:drop-shadow(0 0 14px var(--n)) drop-shadow(0 0 30px var(--tl))}
 .edge.go{display:block;clip-path:polygon(var(--a) 0,calc(var(--a) + 1.4%) 0,calc(var(--a) - 28% + 1.4%) 100%,calc(var(--a) - 28%) 100%);animation:wipe .95s .3s cubic-bezier(.7,0,.25,1) forwards}
+html:has(body.pre),body.pre{overflow:hidden;height:100%}
 body.pre .stage{opacity:0;transform:translateY(70px) scale(.95)}
 body.pre .hero .sub,body.pre .hero .cat,body.pre .scroll,body.pre header{opacity:0}
 .hero .stage{transition:opacity 1.1s .7s,transform 1.4s .7s cubic-bezier(.2,.8,.2,1)}
@@ -328,7 +324,9 @@ if(saved){g.style.display='none';window.__unlock()}
 f.addEventListener('submit',function(e){e.preventDefault();sha(i.value.trim().toLowerCase()).then(function(h){if(h===H)pass();else{m.textContent='パスワードが違います';i.value='';i.focus()}})});
 })();
 document.body.classList.add('pre');
-$('open').onclick=function(){var o=this;if(!o.classList.contains('tapok')||o.classList.contains('go'))return;o.classList.add('go');$('edge').classList.add('go');setTimeout(function(){document.body.classList.remove('pre');document.body.classList.add('enter')},650);setTimeout(function(){o.classList.add('gone');$('edge').classList.remove('go')},1500)};
+function top0(){try{window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0}catch(e){}}
+try{history.scrollRestoration='manual'}catch(e){}top0();
+$('open').onclick=function(){var o=this;if(!o.classList.contains('tapok')||o.classList.contains('go'))return;o.classList.add('go');$('edge').classList.add('go');top0();setTimeout(function(){top0();document.body.classList.remove('pre');document.body.classList.add('enter');top0()},650);setTimeout(function(){o.classList.add('gone');$('edge').classList.remove('go')},1500)};
 
 /* tap effect */
 (function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
